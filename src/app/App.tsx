@@ -36,7 +36,7 @@ function App() {
 
 
     // Тут будет роутинг, но пока вызываем компоненты напрямую
-    <div className="pagesWrapper">
+    <div className="pages__Wrapper">
       <MainPage array={dataArray}/>
 
     </div>      
