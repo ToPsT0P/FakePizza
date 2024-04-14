@@ -79,6 +79,7 @@
         box-sizing: border-box;
         width: 132px;
         display: flex;
+        cursor: pointer;
         height: 40px;
         background: #FE5F1E;
         border: 1px solid #FE5F1E;

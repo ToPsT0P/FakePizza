@@ -1,0 +1,152 @@
+
+
+.cart__wrapper{
+    width: 100%;
+    height: 908px;
+    background: white;
+}
+
+.cart__centralside{
+    width: 100%;
+    height: calc(100% - 140px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart__centralside__main{
+    width: 840px;
+    height: 590px;
+}
+
+.cart__centralside__main__top{
+    display: flex;
+    flex-wrap: nowrap;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(227, 227, 227);
+}
+
+.cart__centralside__main__top__left{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    
+    b{
+        font-family: 'Proxima Nova';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 39px;
+        letter-spacing: 0.01em;
+        color: #000000;
+    }
+
+    img{
+        margin-right: 16px;
+        width: 29px;
+        height: 29px;
+    }
+}
+
+.cart__centralside__main__top__right{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    img{
+        margin-right: 9px;
+        padding-bottom: 3px;
+    }
+
+    p{
+        font-family: 'Proxima Nova';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+
+        color: #B6B6B6;
+
+
+    }
+}
+
+.cart__centralside__main__bottom{
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.cart__centralside__main__bottom__top{
+    height: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+
+    div{
+        display: flex;
+        flex-wrap: nowrap;
+
+        p{
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+    }
+}
+
+.cart__centralside__main__bottom__bottom{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: fit-content;
+
+    .cart__centralside__main__bottom__exitButton{
+            box-sizing: border-box;
+            width: 211px;
+            height: 55px;
+            background: #FFFFFF;
+            border: 1px solid #D3D3D3;
+            border-radius: 30px;
+
+    }
+}
+
+.cart__centralside__main__bottom__exitButton{
+    font-family: 'Proxima Nova';
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #CACACA;
+}
+
+.cart__centralside__main__bottom__buyButton{
+    width: 211px;
+    height: 55px;
+    background: #FE5F1E;
+    border-radius: 30px;
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    color: #FFFFFF;
+
+}

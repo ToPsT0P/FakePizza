@@ -6,12 +6,10 @@ import { IData, IElement } from "../../types/Types"
 const PizzaItem:FC<IElement> = ({item}) => {
 
 
-    console.log(item)
-
     return(
         <div className={styles.pizza}>
             <img src={Images.burger} alt="" />
-            <b>Чизбургер-пицца</b>
+            <b>{item.name}</b>
             <div className={styles.pizza__options}>
                 <b id="1" className={styles.pizza__options__top}>тонкое</b>
                 <b id="2" className={styles.pizza__options__top} >традиционное</b>
@@ -20,7 +18,7 @@ const PizzaItem:FC<IElement> = ({item}) => {
                 <b id="5" className={styles.pizza__options__bottom}>40 см.</b>
             </div>
             <div className={styles.pizza__bottomside}>
-                <b>от 395 ₽</b>
+                <b>от {item.price} &#8381;</b>
                 <div className={styles.pizza__bottomside__button}>
                     <img src={Images.plus} alt="" />
                     Добавить
