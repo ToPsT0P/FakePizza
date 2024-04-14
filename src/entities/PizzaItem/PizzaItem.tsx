@@ -1,25 +1,62 @@
-import styles from "./PizzaItem.module.css"
 import Images from "../../shared/Images"
 import { FC } from "react"
-import { IData, IElement } from "../../types/Types"
+import { IElement } from "../../types/Types"
+import "./PizzaItem.scss"
 
 const PizzaItem:FC<IElement> = ({item}) => {
 
+    interface ILikedOptions {
+        e: any;
+    }
+
+    const likedOptions:FC<ILikedOptions> = ({e}) => {
+
+        if(e.target.id == `${item.id}1` || e.target.id == `${item.id}2`){
+            const firstEl = document.getElementById(`1${item.id}`)
+            const secondEl = document.getElementById(`2${item.id}`)
+            firstEl?.classList.remove("active")
+            secondEl?.classList.remove("active")
+            if(e.target.id == `${item.id}1`){
+                firstEl?.classList.add("active")
+            }else{
+                secondEl?.classList.add("active")
+            }
+        }else{
+            const firstEl = document.getElementById(`${item.id}3`)
+            const secondEl = document.getElementById(`${item.id}4`)
+            const thirdEl = document.getElementById(`${item.id}5`)
+            firstEl?.classList.remove("active")
+            secondEl?.classList.remove("active")
+            thirdEl?.classList.remove("active")
+            if(e.target.id == `${item.id}3`){
+                firstEl?.classList.add("active")
+            }
+            if(e.target.id == `${item.id}4`){
+                secondEl?.classList.add("active")
+            }
+            if(e.target.id == `${item.id}5`){
+                thirdEl?.classList.add("active")
+            }
+        }
+
+        
+        return 1
+    }
 
     return(
-        <div className={styles.pizza}>
+        <div className="pizza">
             <img src={Images.burger} alt="" />
             <b>{item.name}</b>
-            <div className={styles.pizza__options}>
-                <b id="1" className={styles.pizza__options__top}>тонкое</b>
-                <b id="2" className={styles.pizza__options__top} >традиционное</b>
-                <b id="3" className={styles.pizza__options__bottom}>26 см.</b>
-                <b id="4" className={styles.pizza__options__bottom}>30 см.</b>
-                <b id="5" className={styles.pizza__options__bottom}>40 см.</b>
+            <div className="pizza__options">
+                <b id={`${item.id}1`} onClick={(e) => likedOptions({e})} className="pizza__options__top">тонкое</b>
+                <b id={`${item.id}2`} onClick={(e) => likedOptions({e})} className="pizza__options__top active" >традиционное</b>
+                <b id={`${item.id}3`} onClick={(e) => likedOptions({e})} className="pizza__options__bottom">26 см.</b>
+                <b id={`${item.id}4`} onClick={(e) => likedOptions({e})} className="pizza__options__bottom">30 см.</b>
+                <b id={`${item.id}5`} onClick={(e) => likedOptions({e})} className="pizza__options__bottom">40 см.</b>
             </div>
-            <div className={styles.pizza__bottomside}>
+            <div className="pizza__bottomside">
                 <b>от {item.price} &#8381;</b>
-                <div className={styles.pizza__bottomside__button}>
+                <div className="pizza__bottomside__button">
                     <img src={Images.plus} alt="" />
                     Добавить
                 </div>

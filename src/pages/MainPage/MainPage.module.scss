@@ -47,7 +47,6 @@
             padding-left: 25px;
             padding-right: 25px;
             height: 46px;
-            background: #f6f6f6;
             border-radius: 30px;
             display: flex;
             justify-content: center;
@@ -59,10 +58,19 @@
             line-height: 19px;
             text-align: center;
             letter-spacing: 0.015em;
-            color: #2C2C2C; 
+            cursor: pointer;
         }
     }
 }
 
 
-// Здесь код относящийся к одной пицце, надо сделать будет декомпозицию
+.active{
+    background: rgba(40, 40, 40, 1);
+    color: white;
+}
+
+.nonActive{
+    background: #f6f6f6;
+    color: #2C2C2C; 
+
+}

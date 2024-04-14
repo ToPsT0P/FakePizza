@@ -10,5 +10,5 @@ export interface IData {
   }
 
   export interface IElement {
-    item: IData
+    item: IData,
   }

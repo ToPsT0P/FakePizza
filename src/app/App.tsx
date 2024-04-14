@@ -45,25 +45,25 @@ function App() {
           name: "Чизбургер-пицца",
           price: 395,
           imageURL: "burger",
-          id: 1
+          id: 5
         },
         {
           name: "Сырная",
           price: 450,
           imageURL: "cheese",
-          id: 2
+          id: 6
         },
         {
           name: "Креветки по-азиатски",
           price: 290,
           imageURL: "asian",
-          id: 3
+          id: 7
         },
         {
           name: "Сырный цыпленок",
           price: 385,
           imageURL: "coco",
-          id: 4
+          id: 8
         }    
     ])
   }
@@ -74,8 +74,8 @@ function App() {
 
     // Тут будет роутинг, но пока вызываем компоненты напрямую
     <div className="pages__Wrapper">
-      {/* <MainPage array={dataArray}/> */}
-      <Cart/>
+      <MainPage array={dataArray}/>
+      {/* <Cart/> */}
     </div>      
     )
   }

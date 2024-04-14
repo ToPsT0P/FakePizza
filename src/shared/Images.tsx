@@ -10,9 +10,10 @@ import close from "./close.svg"
 import minus from "./minus.svg"
 import cartPlus from "./cartPlus.svg"
 import cartMinus from "./cartMinus.svg"
+import cartFree from "./cartFree.svg"
 
 const Images = {
-    logo, coco, burger, cheese, asian,plus, cart, trash, minus, cartPlus, close, cartMinus
+    logo, coco, burger, cheese, asian,plus, cart, trash, minus, cartPlus, close, cartMinus, cartFree
 }
 
 export default Images
