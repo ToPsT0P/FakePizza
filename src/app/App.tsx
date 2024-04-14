@@ -17,10 +17,46 @@ function App() {
       // setDataArray(response.data)
       setDataArray([
         {
-        name: "asdasd",
-        price:123,
-        imageURL: "asdasd",
-        id: 123
+          name: "asdasd",
+          price:123,
+          imageURL: "asdasd",
+          id: 123
+        },
+        {
+          name: "asnbvcvbdasd",
+          price:993,
+          imageURL: "asdasd",
+          id: 993
+        },
+        {
+          name: "asdasd",
+          price:123,
+          imageURL: "asdasd",
+          id: 123
+        },
+        {
+          name: "asnbvcvbdasd",
+          price:993,
+          imageURL: "asdasd",
+          id: 993
+        },
+        {
+          name: "asdasd",
+          price:123,
+          imageURL: "asdasd",
+          id: 123
+        },
+        {
+          name: "asnbvcvbdasd",
+          price:993,
+          imageURL: "asdasd",
+          id: 993
+        },
+        {
+          name: "asdasd",
+          price:123,
+          imageURL: "asdasd",
+          id: 123
         },
         {
           name: "asnbvcvbdasd",
@@ -28,6 +64,8 @@ function App() {
           imageURL: "asdasd",
           id: 993
         }
+        
+        
     ])
   }
 

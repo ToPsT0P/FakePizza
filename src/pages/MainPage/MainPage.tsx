@@ -2,12 +2,11 @@ import { FC } from "react"
 import styles from "./MainPage.module.scss"
 import { IMainPage } from "../../types/Types"
 import Navbar from "../../widgets/Navbar/Navbar"
-import Images from "../../shared/Images"
+import PizzaItem from "../../entities/PizzaItem/PizzaItem"
 
 
 const MainPage:FC<IMainPage> = ({array}) => {
 
-    let active = true
 
     return(
         <div className={styles.wrapper}>
@@ -27,19 +26,9 @@ const MainPage:FC<IMainPage> = ({array}) => {
             </div>
             <div className={styles.centralSide}>
                 <h1>Все пиццы</h1>
-                <div className={styles.pizza}>
-                    <img src={Images.burger} alt="" />
-                    <b>Чизбургер-пицца</b>
-                    <div className={styles.pizza__options}>
-                        <b className={`${styles.pizza__options__top} ${active ? 'styles.pizza__options__active' : ''}`}>тонкое</b>
-                        <b className={styles.pizza__options__top} >традиционное</b>
-                        <b className={styles.pizza__options__bottom}>26 см.</b>
-                        <b className={styles.pizza__options__bottom}>30 см.</b>
-                        <b className={styles.pizza__options__bottom}>40 см.</b>
-                    </div>
-                    <div className={styles.pizza__bottomside}>
+                <div className={styles.centralSide__elements}>
+                    {array.map((item) => <PizzaItem item={item} />)}
 
-                    </div>
                 </div>
             </div>
 
