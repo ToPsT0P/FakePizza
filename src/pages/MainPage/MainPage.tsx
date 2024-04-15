@@ -10,13 +10,15 @@ const MainPage:FC<IMainPage> = ({array}) => {
     const [activeCategory, setActiveCategory] = useState(0)
     const categories = ["Все","Мясные","Вегетарианские","Гриль","Острые","Закрытые"]
 
+
+
     return(
         <div className={styles.wrapper}>
             <Navbar isMainPage={true}/>
             <div className={styles.topside__filter}>
                 <ul>
                     {categories.map((item, i) => 
-                    <li 
+                    <li key={i}
                     onClick={() => setActiveCategory(i)}
                     className={`${activeCategory === i ? styles.active : styles.nonActive}`}
                     >{item}</li>)}
@@ -28,8 +30,15 @@ const MainPage:FC<IMainPage> = ({array}) => {
             <div className={styles.centralSide}>
                 <h1>Все пиццы</h1>
                 <div className={styles.centralSide__elements}>
-                    {array.map((item) => <PizzaItem item={item} key={item.id}/>)}
-
+                    {/* {array.map((item) => <PizzaItem item={item} key={item.id}/>)} */}
+                    {array.filter((item) => {
+                        if (activeCategory === 0 || activeCategory === item.category) {
+                            return true;
+                        }
+                        return false;
+                        }).map((item) => (
+                        <PizzaItem item={item} />
+                    ))}
                 </div>
             </div>
 

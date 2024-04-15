@@ -1,8 +1,9 @@
 export interface IData {
     name: string,
     price: number,
-    imageURL: string,
+    imageURL:any,
     id: number,
+    category: number,
   }
 
   export interface IMainPage {

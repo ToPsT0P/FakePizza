@@ -12,8 +12,8 @@ const PizzaItem:FC<IElement> = ({item}) => {
     const likedOptions:FC<ILikedOptions> = ({e}) => {
 
         if(e.target.id == `${item.id}1` || e.target.id == `${item.id}2`){
-            const firstEl = document.getElementById(`1${item.id}`)
-            const secondEl = document.getElementById(`2${item.id}`)
+            const firstEl = document.getElementById(`${item.id}1`)
+            const secondEl = document.getElementById(`${item.id}2`)
             firstEl?.classList.remove("active")
             secondEl?.classList.remove("active")
             if(e.target.id == `${item.id}1`){
@@ -45,12 +45,12 @@ const PizzaItem:FC<IElement> = ({item}) => {
 
     return(
         <div className="pizza">
-            <img src={Images.burger} alt="" />
+            <img src={item.imageURL} alt="" />
             <b>{item.name}</b>
             <div className="pizza__options">
-                <b id={`${item.id}1`} onClick={(e) => likedOptions({e})} className="pizza__options__top">тонкое</b>
-                <b id={`${item.id}2`} onClick={(e) => likedOptions({e})} className="pizza__options__top active" >традиционное</b>
-                <b id={`${item.id}3`} onClick={(e) => likedOptions({e})} className="pizza__options__bottom">26 см.</b>
+                <b id={`${item.id}1`} onClick={(e) => likedOptions({e})} className="pizza__options__top active">тонкое</b>
+                <b id={`${item.id}2`} onClick={(e) => likedOptions({e})} className="pizza__options__top" >традиционное</b>
+                <b id={`${item.id}3`} onClick={(e) => likedOptions({e})} className="pizza__options__bottom active">26 см.</b>
                 <b id={`${item.id}4`} onClick={(e) => likedOptions({e})} className="pizza__options__bottom">30 см.</b>
                 <b id={`${item.id}5`} onClick={(e) => likedOptions({e})} className="pizza__options__bottom">40 см.</b>
             </div>

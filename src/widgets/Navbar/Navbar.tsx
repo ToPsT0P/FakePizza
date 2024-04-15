@@ -19,10 +19,17 @@ const Navbar:FC<INavbar> = ({isMainPage}) => {
                 </div>
             </div>
 
-            <div className={styles.navbar__rightside}>
                 {
                 isMainPage 
-                ?
+                ?<>
+            <div className={styles.navbar__centralside}>
+                <div className={styles.navbar__centralside__input}>
+                    <img src={Images.search} alt="" />
+                    <input type="text" placeholder="Поиск пиццы..." />
+                </div>
+            </div>
+
+            <div className={styles.navbar__rightside}>
                 <div className={styles.navbar__rightside__button}>
                     <div className={styles.navbar__rightside__price}>
                         520Р
@@ -31,10 +38,9 @@ const Navbar:FC<INavbar> = ({isMainPage}) => {
                         3
                     </div>
                 </div> 
-
+            </div></>
                 : <></>
                 }
-            </div>
         </div>
     )
 }
