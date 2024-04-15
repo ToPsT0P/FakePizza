@@ -4,17 +4,19 @@ import { IMainPage } from "../../types/Types"
 import Navbar from "../../widgets/Navbar/Navbar"
 import PizzaItem from "../../entities/PizzaItem/PizzaItem"
 
-
 const MainPage:FC<IMainPage> = ({array}) => {
 
-    const [activeCategory, setActiveCategory] = useState(0)
+    const [activeCategory, setActiveCategory] = useState<number>(0)
+    const [searchValue, setSearchValue] = useState("")
     const categories = ["Все","Мясные","Вегетарианские","Гриль","Острые","Закрытые"]
 
-
+    const filtredArray = array.filter(pizza => {
+        return pizza.name.toLowerCase().includes(searchValue.toLowerCase())
+    })
 
     return(
         <div className={styles.wrapper}>
-            <Navbar isMainPage={true}/>
+            <Navbar setSearchValue={setSearchValue} isMainPage={true}/>
             <div className={styles.topside__filter}>
                 <ul>
                     {categories.map((item, i) => 
@@ -30,8 +32,7 @@ const MainPage:FC<IMainPage> = ({array}) => {
             <div className={styles.centralSide}>
                 <h1>Все пиццы</h1>
                 <div className={styles.centralSide__elements}>
-                    {/* {array.map((item) => <PizzaItem item={item} key={item.id}/>)} */}
-                    {array.filter((item) => {
+                    {filtredArray.filter((item) => {
                         if (activeCategory === 0 || activeCategory === item.category) {
                             return true;
                         }

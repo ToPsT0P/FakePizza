@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import styles from "./CartPage.module.scss"
 import Navbar from "../../widgets/Navbar/Navbar"
 import Images from "../../shared/Images"
@@ -7,11 +7,36 @@ import PizzaItemCart from "../../entities/PizzaItemCart/PizzaItemCart"
 
 const Cart:FC = () => {
 
-    const cartAny = true
+    const cartAny = !!localStorage.length
+    const flag = true
+    interface StoredObject {
+        [key: string]: any;
+    }
+    
+    const allItems: StoredObject[] = [];
+    
+    const takingData = () => {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key) {
+                const value = localStorage.getItem(key);
+                if (value) {
+                    const parsedValue: StoredObject = JSON.parse(value);
+                    allItems.push(parsedValue);
+                }
+            }
+        }
+    }
+
+    takingData()
+    useEffect(() => {
+        takingData()
+        console.log(allItems)
+    }, [flag])
 
     return(
         <div className={styles.cart__wrapper}>
-            <Navbar isMainPage={false}/>
+            <Navbar setSearchValue={""} isMainPage={false}/>
             <div className={styles.cart__centralside}>
                 {cartAny 
                 ? 
@@ -27,7 +52,7 @@ const Cart:FC = () => {
                         </div>
                     </div>
                         <div className={styles.cart__centralside__main__items}>
-                            <PizzaItemCart />
+                            {allItems.map(item => <PizzaItemCart flag={flag} item={item}/>)}
                         </div>
                         <div className={styles.cart__centralside__main__bottom}>
                             <div className={styles.cart__centralside__main__bottom__top}>

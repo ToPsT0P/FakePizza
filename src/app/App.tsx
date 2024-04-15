@@ -5,6 +5,7 @@ import axios from "axios"
 import { IData } from "../types/Types"
 import Cart from "../pages/CartPage/CartPage"
 import Images from "../shared/Images"
+import { Route, Routes } from "react-router-dom"
 
 function App() {
 
@@ -86,8 +87,10 @@ function App() {
 
     // Тут будет роутинг, но пока вызываем компоненты напрямую
     <div className="pages__Wrapper">
-      <MainPage array={dataArray}/>
-      {/* <Cart/> */}
+      <Routes>
+        <Route path="/" element={<MainPage array={dataArray}/>}/>
+        <Route path="/cart" element={<Cart/>} />
+      </Routes>
     </div>      
     )
   }

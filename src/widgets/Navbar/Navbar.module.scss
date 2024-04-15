@@ -12,6 +12,7 @@
 
 .navbar__leftside{
     display: flex;
+    text-decoration: none;
     flex-wrap: wrap;
     width: 316px;
     height: 48px;
@@ -60,6 +61,7 @@
 }
 
 .navbar__rightside__button{
+    text-decoration: none;
     display: flex;
     flex-wrap: nowrap;
     width: 150px;
@@ -89,7 +91,7 @@
         height: 20px;
         width: 20px;
         margin-right: 5px;
-        padding-left: 5px;
+        padding-left: 10px;
     }
 
     input{

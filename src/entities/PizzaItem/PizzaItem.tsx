@@ -1,16 +1,12 @@
 import Images from "../../shared/Images"
 import { FC } from "react"
-import { IElement } from "../../types/Types"
+import { IElement, ILikedOptions } from "../../types/Types"
 import "./PizzaItem.scss"
+import { json } from "react-router-dom"
 
 const PizzaItem:FC<IElement> = ({item}) => {
 
-    interface ILikedOptions {
-        e: any;
-    }
-
     const likedOptions:FC<ILikedOptions> = ({e}) => {
-
         if(e.target.id == `${item.id}1` || e.target.id == `${item.id}2`){
             const firstEl = document.getElementById(`${item.id}1`)
             const secondEl = document.getElementById(`${item.id}2`)
@@ -38,9 +34,11 @@ const PizzaItem:FC<IElement> = ({item}) => {
                 thirdEl?.classList.add("active")
             }
         }
-
-        
         return 1
+    }
+
+    const addingToCart = () => {
+        localStorage.setItem(`${item.id}`, JSON.stringify(item))
     }
 
     return(
@@ -56,7 +54,9 @@ const PizzaItem:FC<IElement> = ({item}) => {
             </div>
             <div className="pizza__bottomside">
                 <b>от {item.price} &#8381;</b>
-                <div className="pizza__bottomside__button">
+                <div
+                onClick={() => addingToCart()}
+                 className="pizza__bottomside__button">
                     <img src={Images.plus} alt="" />
                     Добавить
                 </div>
