@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import MainPage from "../pages/MainPage/MainPage"
 import "./absoluteStyles.scss"
-import axios from "axios"
 import { IData } from "../types/Types"
 import Cart from "../pages/CartPage/CartPage"
 import Images from "../shared/Images"
@@ -12,7 +11,6 @@ function App() {
   const [dataArray, setDataArray] = useState<IData[]>([])
 
 
-  // const store = 
 
   useEffect(() => {
     fetchData()

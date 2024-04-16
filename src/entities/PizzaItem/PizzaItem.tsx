@@ -1,41 +1,65 @@
 import Images from "../../shared/Images"
-import { FC } from "react"
+import { FC, useState } from "react"
 import { IElement, ILikedOptions } from "../../types/Types"
 import "./PizzaItem.scss"
 import { json } from "react-router-dom"
 
 const PizzaItem:FC<IElement> = ({item}) => {
 
-    const likedOptions:FC<ILikedOptions> = ({e}) => {
-        if(e.target.id == `${item.id}1` || e.target.id == `${item.id}2`){
-            const firstEl = document.getElementById(`${item.id}1`)
-            const secondEl = document.getElementById(`${item.id}2`)
-            firstEl?.classList.remove("active")
-            secondEl?.classList.remove("active")
-            if(e.target.id == `${item.id}1`){
-                firstEl?.classList.add("active")
-            }else{
-                secondEl?.classList.add("active")
-            }
-        }else{
-            const firstEl = document.getElementById(`${item.id}3`)
-            const secondEl = document.getElementById(`${item.id}4`)
-            const thirdEl = document.getElementById(`${item.id}5`)
-            firstEl?.classList.remove("active")
-            secondEl?.classList.remove("active")
-            thirdEl?.classList.remove("active")
-            if(e.target.id == `${item.id}3`){
-                firstEl?.classList.add("active")
-            }
-            if(e.target.id == `${item.id}4`){
-                secondEl?.classList.add("active")
-            }
-            if(e.target.id == `${item.id}5`){
-                thirdEl?.classList.add("active")
-            }
+    const [itemOptions, setItemOptions] = useState<number[]>([])
+
+    const likedOptions: FC<ILikedOptions> = ({ e }) => {
+        const itemId = item.id;
+        const targetId = e.target.id;
+    
+        // Функция для установки класса активности
+        const setActiveClass = (optionIds: number[]) => {
+            optionIds.forEach((optionId) => {
+                const optionEl = document.getElementById(`${itemId}${optionId}`);
+                optionEl?.classList.add("active");
+            });
+        };
+    
+        // Удаляем классы активности со всех опций
+        [1, 2, 3, 4, 5].forEach((optionId) => {
+            const optionEl = document.getElementById(`${itemId}${optionId}`);
+            optionEl?.classList.remove("active");
+        });
+    
+        // Определяем комбинации для установки активности и значений itemOptions
+        if (targetId === `${itemId}1`) {
+            setActiveClass([1, 3]);
+            setItemOptions([1, 3]);
+        } else if (targetId === `${itemId}2`) {
+            setActiveClass([2, 3]);
+            setItemOptions([2, 3]);
+        } else if (targetId === `${itemId}3` && itemOptions[0] == 1) {
+            setActiveClass([1, 3]);
+            setItemOptions([1, 3]);
+        } else if (targetId === `${itemId}4` && itemOptions[0] == 1) {
+            setActiveClass([1, 4]);
+            setItemOptions([1, 4]);
+        } else if (targetId === `${itemId}5` && itemOptions[0] == 1) {
+            setActiveClass([1, 5]);
+            setItemOptions([1, 5]);
+        } else if (targetId === `${itemId}4`) {
+            setActiveClass([2, 4]);
+            setItemOptions([2, 4]);
+        } else if (targetId === `${itemId}5`) {
+            setActiveClass([2, 5]);
+            setItemOptions([2, 5]);
+        } else if (targetId === `${itemId}3`) {
+            setActiveClass([2, 3]);
+            setItemOptions([2, 3]);
         }
-        return 1
-    }
+    
+        return 1;
+    };
+    
+    
+    
+// async def ebat_nazistov(Wagner: PMC, Azov: NazistiEbanie) -> DeadNazi:
+//      await viebat_artoi(Azov.coords)
 
     const addingToCart = () => {
         localStorage.setItem(`${item.id}`, JSON.stringify(item))

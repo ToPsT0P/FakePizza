@@ -3,6 +3,9 @@ import styles from "./MainPage.module.scss"
 import { IMainPage } from "../../types/Types"
 import Navbar from "../../widgets/Navbar/Navbar"
 import PizzaItem from "../../entities/PizzaItem/PizzaItem"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { DataSlice } from "../../store/reducers/DataSlice"
+import { Provider } from "react-redux"
 
 const MainPage:FC<IMainPage> = ({array}) => {
 
@@ -13,6 +16,11 @@ const MainPage:FC<IMainPage> = ({array}) => {
     const filtredArray = array.filter(pizza => {
         return pizza.name.toLowerCase().includes(searchValue.toLowerCase())
     })
+
+    const {count} = useAppSelector(state => state.dataReducer)
+    const {increment} = DataSlice.actions
+    const dispatch = useAppDispatch()
+
 
     return(
         <div className={styles.wrapper}>
@@ -31,6 +39,7 @@ const MainPage:FC<IMainPage> = ({array}) => {
             </div>
             <div className={styles.centralSide}>
                 <h1>Все пиццы</h1>
+
                 <div className={styles.centralSide__elements}>
                     {filtredArray.filter((item) => {
                         if (activeCategory === 0 || activeCategory === item.category) {

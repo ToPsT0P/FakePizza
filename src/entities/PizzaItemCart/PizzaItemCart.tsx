@@ -1,18 +1,15 @@
 import styles from "./PizzaItemCart.module.scss"
 import Images from "../../shared/Images"
 import { FC, useState } from "react"
-import { IData } from "../../types/Types"
 
 interface IPizzaItemCart {
     item: any
-    flag: boolean
 }
 
-const PizzaItemCart:FC<IPizzaItemCart> = ({item, flag}) => {
+const PizzaItemCart:FC<IPizzaItemCart> = ({item}) => {
 
     const [count, setCount] = useState(1)
     const pizzaDelete = () => {
-        flag = !flag
         localStorage.removeItem(`${item.id}`)
     }
 

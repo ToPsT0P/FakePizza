@@ -8,7 +8,6 @@ import PizzaItemCart from "../../entities/PizzaItemCart/PizzaItemCart"
 const Cart:FC = () => {
 
     const cartAny = !!localStorage.length
-    const flag = true
     interface StoredObject {
         [key: string]: any;
     }
@@ -29,10 +28,6 @@ const Cart:FC = () => {
     }
 
     takingData()
-    useEffect(() => {
-        takingData()
-        console.log(allItems)
-    }, [flag])
 
     return(
         <div className={styles.cart__wrapper}>
@@ -52,7 +47,7 @@ const Cart:FC = () => {
                         </div>
                     </div>
                         <div className={styles.cart__centralside__main__items}>
-                            {allItems.map(item => <PizzaItemCart flag={flag} item={item}/>)}
+                            {allItems.map(item => <PizzaItemCart item={item}/>)}
                         </div>
                         <div className={styles.cart__centralside__main__bottom}>
                             <div className={styles.cart__centralside__main__bottom__top}>
