@@ -9,11 +9,9 @@ export interface IData {
 export interface IMainPage {
     array: IData[]
   }
-
 export interface IElement {
-    item: IData,
-  }
-
+  item: IData
+}
 export interface ILikedOptions {
     e: any;
 }
@@ -22,4 +20,11 @@ export interface INavbar {
   isMainPage: boolean,
   setSearchValue: any
 }
+
+export interface ICartData {
+    item: IData
+    count: number
+    options: number[]
+}
+
 

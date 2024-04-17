@@ -1,39 +1,35 @@
-import { FC, useEffect } from "react"
+import { FC, useEffect, useState } from "react"
 import styles from "./CartPage.module.scss"
 import Navbar from "../../widgets/Navbar/Navbar"
 import Images from "../../shared/Images"
 import PizzaItemCart from "../../entities/PizzaItemCart/PizzaItemCart"
-
+import { useSelector } from "react-redux"
+import { RootStateCartData } from "../../store/RootState"
+import { ICartData } from "../../types/Types"
 
 const Cart:FC = () => {
 
-    const cartAny = !!localStorage.length
-    interface StoredObject {
-        [key: string]: any;
-    }
-    
-    const allItems: StoredObject[] = [];
-    
-    const takingData = () => {
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            if (key) {
-                const value = localStorage.getItem(key);
-                if (value) {
-                    const parsedValue: StoredObject = JSON.parse(value);
-                    allItems.push(parsedValue);
-                }
-            }
+    const allCartData : ICartData[] = useSelector((state :RootStateCartData) => state.cartData)
+    const [cartFree, setCartFree] = useState(true)
+
+    const checkCartFree = () => {
+        if(allCartData.length == 0){
+            setCartFree(true)
+        }else{
+            setCartFree(false)
         }
     }
+    
+    useEffect(() => {
+        checkCartFree()
+    }, [allCartData])
 
-    takingData()
 
     return(
         <div className={styles.cart__wrapper}>
             <Navbar setSearchValue={""} isMainPage={false}/>
             <div className={styles.cart__centralside}>
-                {cartAny 
+                {!cartFree
                 ? 
                 <div className={styles.cart__centralside__main}>
                     <div className={styles.cart__centralside__main__top}>
@@ -47,7 +43,7 @@ const Cart:FC = () => {
                         </div>
                     </div>
                         <div className={styles.cart__centralside__main__items}>
-                            {allItems.map(item => <PizzaItemCart item={item}/>)}
+                            {allCartData.map(item => <PizzaItemCart options={item.options} count={item.count} item={item.item}/>)}
                         </div>
                         <div className={styles.cart__centralside__main__bottom}>
                             <div className={styles.cart__centralside__main__bottom__top}>

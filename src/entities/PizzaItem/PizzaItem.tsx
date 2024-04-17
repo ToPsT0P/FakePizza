@@ -2,11 +2,13 @@ import Images from "../../shared/Images"
 import { FC, useState } from "react"
 import { IElement, ILikedOptions } from "../../types/Types"
 import "./PizzaItem.scss"
-import { json } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { actions } from "../../store/CartData/CartData.slice"
 
-const PizzaItem:FC<IElement> = ({item}) => {
+const PizzaItem:FC <IElement> = ({item}) => {
 
-    const [itemOptions, setItemOptions] = useState<number[]>([])
+    const dispatch = useDispatch()
+    const [itemOptions, setItemOptions] = useState<number[]>([1,3])
 
     const likedOptions: FC<ILikedOptions> = ({ e }) => {
         const itemId = item.id;
@@ -25,7 +27,7 @@ const PizzaItem:FC<IElement> = ({item}) => {
             const optionEl = document.getElementById(`${itemId}${optionId}`);
             optionEl?.classList.remove("active");
         });
-    
+        
         // Определяем комбинации для установки активности и значений itemOptions
         if (targetId === `${itemId}1`) {
             setActiveClass([1, 3]);
@@ -52,18 +54,10 @@ const PizzaItem:FC<IElement> = ({item}) => {
             setActiveClass([2, 3]);
             setItemOptions([2, 3]);
         }
-    
+        
         return 1;
     };
     
-    
-    
-// async def ebat_nazistov(Wagner: PMC, Azov: NazistiEbanie) -> DeadNazi:
-//      await viebat_artoi(Azov.coords)
-
-    const addingToCart = () => {
-        localStorage.setItem(`${item.id}`, JSON.stringify(item))
-    }
 
     return(
         <div className="pizza">
@@ -79,9 +73,13 @@ const PizzaItem:FC<IElement> = ({item}) => {
             <div className="pizza__bottomside">
                 <b>от {item.price} &#8381;</b>
                 <div
-                onClick={() => addingToCart()}
+                onClick={() => dispatch(actions.addingToCart({item, count: 1, options: itemOptions}))}
                  className="pizza__bottomside__button">
-                    <img src={Images.plus} alt="" />
+                    <img 
+                    src={Images.plus} 
+                    alt=""
+                    
+                    />
                     Добавить
                 </div>
             </div>

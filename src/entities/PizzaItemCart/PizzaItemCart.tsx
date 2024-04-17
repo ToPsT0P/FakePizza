@@ -1,17 +1,30 @@
 import styles from "./PizzaItemCart.module.scss"
 import Images from "../../shared/Images"
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
+import { ICartData } from "../../types/Types"
+import { useDispatch } from "react-redux"
+import { actions } from "../../store/CartData/CartData.slice"
 
-interface IPizzaItemCart {
-    item: any
-}
 
-const PizzaItemCart:FC<IPizzaItemCart> = ({item}) => {
+const PizzaItemCart:FC<ICartData> = ({item, count, options}) => {
 
-    const [count, setCount] = useState(1)
-    const pizzaDelete = () => {
-        localStorage.removeItem(`${item.id}`)
+    const dispatch = useDispatch()
+    const [firstOption, setFirstOption] = useState("")
+    const [secondOption, setSecondOption] = useState("")
+
+    const checkData = () => {
+        if(options[0] == 1){
+            setFirstOption("тонкое тесто")
+        }else if(options[0] == 2){setFirstOption("Традиционное тесто")}
+
+        if(options[1] == 3){
+            setSecondOption("26 см.")
+        }else if(options[1] == 4){
+            setSecondOption("30 см.")
+        }else{setSecondOption("40 см.")}
     }
+
+    useEffect(() => {checkData()}, [])
 
     return(
         <div className={styles.item__wrapper}>
@@ -19,21 +32,24 @@ const PizzaItemCart:FC<IPizzaItemCart> = ({item}) => {
                 <img src={item.imageURL} alt="" />
                 <div className={styles.item__left__text}>
                     <b>{item.name}</b>
-                    <p>Тонкое тесто, 26 см.</p>
+                    <p>{firstOption} {secondOption}</p>
                 </div>
             </div>
 
             <div className={styles.item__right}>
 
                 <div className={styles.item__right__buttons}>
-                    <img src={Images.cartPlus} onClick={() => setCount(count + 1)} alt="" />
+                    <img src={Images.cartPlus} alt="" />
                     {count}
-                    <img src={Images.cartMinus} onClick={()=>{ if(count > 1){setCount(count - 1)}}} alt="" />
+                    <img src={Images.cartMinus} alt="" />
                 </div>
                 <b>
                     {item.price * count} &#8381;
                 </b>
-                <img src={Images.close} onClick={() => pizzaDelete()} alt="" />
+                <img src={Images.close} 
+                style={{cursor:"pointer"}}
+                onClick={() => dispatch(actions.deleteFromCart(item.id))}
+                alt="" />
             </div>
     </div>
     )
