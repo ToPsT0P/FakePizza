@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ICartData, IData } from "../../types/Types";
+import { ICartData } from "../../types/Types";
 
 
 const initialState : ICartData[] = []
@@ -19,6 +19,19 @@ export const CartDataSlice = createSlice({
         deleteFromCart: (state, action: PayloadAction<number>) => {
             const itemIdToDelete = action.payload;
             return state.filter(cartItem => cartItem.item.id !== itemIdToDelete);
+        },
+
+        changingCount: (state, action: PayloadAction<{itemID: number, newCount: number}>) => {
+            
+            const {itemID, newCount} = action.payload
+            const itemToUpdateIndex = state.findIndex(cartItem => cartItem.item.id === itemID);
+
+            if(newCount > 0){
+                state[itemToUpdateIndex].count = newCount
+            }
+
+            
+            
         }
 
     }

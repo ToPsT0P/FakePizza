@@ -39,15 +39,20 @@ const PizzaItemCart:FC<ICartData> = ({item, count, options}) => {
             <div className={styles.item__right}>
 
                 <div className={styles.item__right__buttons}>
-                    <img src={Images.cartPlus} alt="" />
+                    <img src={Images.cartPlus} 
+                    onClick={() => dispatch(actions.changingCount({itemID: item.id, newCount: count + 1}))}
+                    alt="" />
                     {count}
-                    <img src={Images.cartMinus} alt="" />
+                    <img 
+                    onClick={() => dispatch(actions.changingCount({itemID: item.id, newCount: count - 1}))}
+                    src={Images.cartMinus} alt="" />
                 </div>
                 <b>
                     {item.price * count} &#8381;
                 </b>
-                <img src={Images.close} 
-                style={{cursor:"pointer"}}
+                <img 
+                src={Images.close} 
+                style={{cursor:"pointer", marginRight: "40px"}}
                 onClick={() => dispatch(actions.deleteFromCart(item.id))}
                 alt="" />
             </div>
