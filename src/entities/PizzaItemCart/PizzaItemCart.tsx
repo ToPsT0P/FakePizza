@@ -29,7 +29,7 @@ const PizzaItemCart:FC<ICartData> = ({item, count, options}) => {
     return(
         <div className={styles.item__wrapper}>
             <div className={styles.item__left}>
-                <img src={item.imageURL} alt="" />
+                <img src={`/src/shared/${item.imageURL}`} alt="" />
                 <div className={styles.item__left__text}>
                     <b>{item.name}</b>
                     <p>{firstOption} {secondOption}</p>

@@ -13,10 +13,14 @@ export const CartDataSlice = createSlice({
         addingToCart: (state, action: PayloadAction<ICartData>) => {
             if(state.some(r => r.item.id === action.payload.item.id)) {
                 return
+                
             } else {state.push(action.payload)}
         },
         
         deleteFromCart: (state, action: PayloadAction<number>) => {
+            if(action.payload == -1){
+                return state.filter(cartItem => cartItem.item.id == action.payload)
+            }
             const itemIdToDelete = action.payload;
             return state.filter(cartItem => cartItem.item.id !== itemIdToDelete);
         },
@@ -28,12 +32,8 @@ export const CartDataSlice = createSlice({
 
             if(newCount > 0){
                 state[itemToUpdateIndex].count = newCount
-            }
-
-            
-            
-        }
-
+            }            
+        },
     }
 })
 

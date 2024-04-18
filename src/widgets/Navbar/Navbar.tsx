@@ -6,7 +6,6 @@ import { INavbar } from "../../types/Types"
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootStateCartData } from "../../store/RootState"
-import { render } from "react-dom"
 
 
 
@@ -22,7 +21,7 @@ const Navbar:FC<INavbar> = ({isMainPage, setSearchValue}) => {
 
     useEffect(() => {
         goods.map(item => {
-            goodsPrice = item.item.price + goodsPrice
+            goodsPrice = (item.item.price * item.count)+ goodsPrice
             goodsCount = item.count + goodsCount
             
             setGoodsPriceUseState(goodsPrice)
@@ -59,6 +58,7 @@ const Navbar:FC<INavbar> = ({isMainPage, setSearchValue}) => {
                 <Link to={"/cart"} className={styles.navbar__rightside__button}>
                     <div className={styles.navbar__rightside__price}>
                         {goodsPriceUseState}Р
+
                     </div>
                     <div>
                         {goodsCountUseState}

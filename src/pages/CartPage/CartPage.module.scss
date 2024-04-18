@@ -55,10 +55,12 @@
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
+    cursor: pointer;
 
     img{
         margin-right: 9px;
         padding-bottom: 3px;
+        cursor: pointer;
     }
 
     p{
@@ -67,7 +69,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-
+        cursor: pointer;
         color: #B6B6B6;
 
 
@@ -115,6 +117,19 @@
             background: #FFFFFF;
             border: 1px solid #D3D3D3;
             border-radius: 30px;
+            transition: 0.3s;
+        
+
+            .exitText{
+                text-decoration: none;
+                color: black;
+                transition: 0.3s;
+            }
+        }
+        
+        .cart__centralside__main__bottom__exitButton:hover{
+            transform: scale(1.1);
+            box-shadow: 1px 5px 11px rgba(151, 151, 151, 0.758);
 
     }
 }
@@ -149,7 +164,13 @@
     cursor: pointer;
     text-align: center;
     color: #FFFFFF;
+    transition: 0.3s;
 
+}
+
+.cart__centralside__main__bottom__buyButton:hover{
+    transform: scale(1.1);
+    box-shadow: 1px 5px 11px rgba(151, 151, 151, 0.758);
 }
 
 .cartFree{
@@ -194,7 +215,7 @@
         height: 305px;
     }
 
-    button{
+    .cartFree__button{
         width: 210px;
         height: 46px;
         background: #282828;
@@ -207,14 +228,30 @@
         font-weight: 700;
         font-size: 16px;
         line-height: 19px;
-        text-align: center;
         letter-spacing: 0.015em;
-
+        text-decoration: none;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        transition: 0.3s;
     }
+    .cartFree__button:hover{
+        transform: scale(1.1);
+        box-shadow: 0px 2px 10px 6px rgba(171, 171, 171, 0.534);
+    }
+
 }
 
 .cart__centralside__main__items{
     max-height: 460px;
     overflow: auto;
     max-width: 100%;
+}
+
+img{
+    transition: 0.15s;
+}
+
+img:hover{
+    transform: scale(1.1);
 }

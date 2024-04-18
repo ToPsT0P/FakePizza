@@ -6,11 +6,19 @@ import PizzaItemCart from "../../entities/PizzaItemCart/PizzaItemCart"
 import { useSelector } from "react-redux"
 import { RootStateCartData } from "../../store/RootState"
 import { ICartData } from "../../types/Types"
+import { useDispatch } from "react-redux"
+import { actions } from "../../store/CartData/CartData.slice"
+import { Link } from "react-router-dom"
 
 const Cart:FC = () => {
 
     const allCartData : ICartData[] = useSelector((state :RootStateCartData) => state.cartData)
-    const [cartFree, setCartFree] = useState(true)
+    const [cartFree, setCartFree] = useState<boolean>(true)
+    const [userPizzaCount, setUserPizzaCount] = useState<number>()
+    const [userPizzaPrice, setUserPizzaPrice] = useState<number>()
+    let pizzaCount = 0
+    let pizzaPrice = 0
+    const dispatch = useDispatch()
 
     const checkCartFree = () => {
         if(allCartData.length == 0){
@@ -19,10 +27,25 @@ const Cart:FC = () => {
             setCartFree(false)
         }
     }
+
+
+    const mathPizzaData = () => {
+        pizzaCount = 0
+        allCartData.map(item => {
+            pizzaCount = pizzaCount + item.count
+            setUserPizzaCount(pizzaCount)
+
+            pizzaPrice = pizzaPrice + (item.item.price * item.count)
+            setUserPizzaPrice(pizzaPrice)
+        })
+    }
     
+
     useEffect(() => {
         checkCartFree()
+        mathPizzaData()
     }, [allCartData])
+
 
 
     return(
@@ -37,7 +60,9 @@ const Cart:FC = () => {
                             <img src={Images.cart} alt="" />
                             <b>Корзина</b>
                         </div>
-                        <div className={styles.cart__centralside__main__top__right}>
+                        <div
+                        onClick={() => dispatch(actions.deleteFromCart(-1))}
+                        className={styles.cart__centralside__main__top__right}>
                             <img src={Images.trash} alt="" />
                             <p>Очистить корзину</p>
                         </div>
@@ -49,16 +74,18 @@ const Cart:FC = () => {
                             <div className={styles.cart__centralside__main__bottom__top}>
                                 <div className={styles.cart__centralside__main__bottom__top__left}>
                                     <p>Всего пицц: </p>
-                                    <b>3 шт.</b>
+                                    <b>{userPizzaCount} шт.</b>
                                 </div>
                                 <div className={styles.cart__centralside__main__bottom__top__right}>
                                     <p>Сумма заказа: </p>
-                                    <b> 900 Руб.</b>
+                                    <b> {userPizzaPrice} Руб.</b>
                                 </div>
                             </div>
                             <div className={styles.cart__centralside__main__bottom__bottom}>
                                 <div className={styles.cart__centralside__main__bottom__exitButton}>
-                                    <p>Вернуться назад</p>
+                                    <Link
+                                    className={styles.exitText}
+                                    to={"/"}>Вернуться назад</Link>
                                 </div>
                                 <div className={styles.cart__centralside__main__bottom__buyButton}>
                                     <p>Оплатить сейчас</p>
@@ -76,7 +103,7 @@ const Cart:FC = () => {
                     </p>
 
                     <img src={Images.cartFree} alt="" />
-                    <button>Вернуться назад</button>
+                    <Link className={styles.cartFree__button} to={"/"}>Вернуться назад</Link>
                 </div>
                 }
             </div>

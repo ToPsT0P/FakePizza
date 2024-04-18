@@ -10,6 +10,14 @@
     align-items: center;
 }
 
+li{
+    transition: 0.2s;
+}
+
+li:hover{
+    transform: scale(1.15);
+}
+
 .navbar__leftside{
     display: flex;
     text-decoration: none;
