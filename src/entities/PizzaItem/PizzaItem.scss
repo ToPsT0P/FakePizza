@@ -42,12 +42,14 @@
             width: 134px;
             height: 32px;
             display: flex;
+            transition: 0.15s;
             justify-content: center;
             align-items: center;
         }
 
         .pizza__options__bottom{
             width: 88px;
+            transition: 0.15s;
             height: 32px;
             display: flex;
             justify-content: center;
@@ -76,6 +78,7 @@
     }
 
     .pizza__bottomside__button{
+        transition: 0.3s;
         box-sizing: border-box;
         width: 132px;
         display: flex;
@@ -97,11 +100,27 @@
             width: 12px;
             height: 12px;
             margin-right: 10px;
+            transition: 1s;
         }
+
     }
 }
 
 .active{
     background: white;
     border-radius: 10px;
+}
+
+.pizza__bottomside__button:hover{
+    transform: scale(1.1);
+    box-shadow: 1px 5px 11px rgba(151, 151, 151, 0.758);
+}
+
+.pizza__options__top:hover{
+    background: rgba(165, 165, 165, 0.087);
+
+}
+
+.pizza__options__bottom:hover{
+    background: rgba(165, 165, 165, 0.087);
 }

@@ -61,7 +61,7 @@ const PizzaItem:FC <IElement> = ({item}) => {
 
     return(
         <div className="pizza">
-            <img src={item.imageURL} alt="" />
+            <img src={`./../../shared/${item.imageURL}`} alt="" />
             <b>{item.name}</b>
             <div className="pizza__options">
                 <b id={`${item.id}1`} onClick={(e) => likedOptions({e})} className="pizza__options__top active">тонкое</b>
@@ -78,7 +78,7 @@ const PizzaItem:FC <IElement> = ({item}) => {
                     <img 
                     src={Images.plus} 
                     alt=""
-                    
+                    className="pizza__bottomside__button__img"
                     />
                     Добавить
                 </div>

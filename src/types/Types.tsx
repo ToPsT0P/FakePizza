@@ -6,9 +6,6 @@ export interface IData {
     category: number,
   }
 
-export interface IMainPage {
-    array: IData[]
-  }
 export interface IElement {
   item: IData
 }

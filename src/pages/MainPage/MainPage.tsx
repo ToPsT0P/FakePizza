@@ -1,16 +1,28 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import styles from "./MainPage.module.scss"
-import { IMainPage } from "../../types/Types"
 import Navbar from "../../widgets/Navbar/Navbar"
 import PizzaItem from "../../entities/PizzaItem/PizzaItem"
+import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+import { RootStateAllData } from "../../store/RootState"
+import { fetchData } from "../../store/DataAPI/DataAPI.slice"
 
-const MainPage:FC<IMainPage> = ({array}) => {
+const MainPage:FC = () => {
+
+    const dispatch = useDispatch();
+    const allData = useSelector((state: RootStateAllData) => state.dataApi.items);
+  
+    useEffect(() => {
+        dispatch<any>(fetchData("https://661c44f9e7b95ad7fa6a0d44.mockapi.io/Data"));
+    }, [dispatch]);
+
+    
 
     const [activeCategory, setActiveCategory] = useState<number>(0)
     const [searchValue, setSearchValue] = useState("")
     const categories = ["Все","Мясные","Вегетарианские","Гриль","Острые","Закрытые"]
 
-    const filtredArray = array.filter(pizza => {
+    const filtredArray = allData.filter(pizza => {
         return pizza.name.toLowerCase().includes(searchValue.toLowerCase())
     })
 
