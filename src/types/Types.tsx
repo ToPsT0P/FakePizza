@@ -11,6 +11,9 @@ export interface IElement {
 }
 export interface ILikedOptions {
     e: any;
+    item: IData
+    setItemOptions: any
+    itemOptions: any
 }
 
 export interface INavbar {

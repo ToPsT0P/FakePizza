@@ -14,11 +14,10 @@ const Navbar:FC<INavbar> = ({isMainPage, setSearchValue}) => {
     const goods = useSelector((state:RootStateCartData) => state.cartData)
     let goodsPrice = 0
     let goodsCount = 0
-
+    
     const [goodsPriceUseState, setGoodsPriceUseState] = useState<number>(0)
     const [goodsCountUseState, setGoodsCountUseState] = useState<number>(0)
-
-
+    
     useEffect(() => {
         goods.map(item => {
             goodsPrice = (item.item.price * item.count)+ goodsPrice
@@ -57,7 +56,7 @@ const Navbar:FC<INavbar> = ({isMainPage, setSearchValue}) => {
             <div className={styles.navbar__rightside}>
                 <Link to={"/cart"} className={styles.navbar__rightside__button}>
                     <div className={styles.navbar__rightside__price}>
-                        {goodsPriceUseState}Р
+                        {goodsPriceUseState} Р
 
                     </div>
                     <div>

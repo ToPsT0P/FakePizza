@@ -11,21 +11,18 @@ const MainPage:FC = () => {
 
     const dispatch = useDispatch();
     const allData = useSelector((state: RootStateAllData) => state.dataApi.items);
-  
+    const categories = ["Все","Мясные","Вегетарианские","Гриль","Острые","Закрытые"]
+    const [activeCategory, setActiveCategory] = useState<number>(0)
+    const [searchValue, setSearchValue] = useState("")
+    const [isLodaing, setIsLoading] = useState<boolean>(true)
+
     useEffect(() => {
         dispatch<any>(fetchData("https://661c44f9e7b95ad7fa6a0d44.mockapi.io/Data"));
     }, [dispatch]);
 
-    
-
-    const [activeCategory, setActiveCategory] = useState<number>(0)
-    const [searchValue, setSearchValue] = useState("")
-    const categories = ["Все","Мясные","Вегетарианские","Гриль","Острые","Закрытые"]
-
     const filtredArray = allData.filter(pizza => {
         return pizza.name.toLowerCase().includes(searchValue.toLowerCase())
     })
-
 
     return(
         <div className={styles.wrapper}>
@@ -43,18 +40,24 @@ const MainPage:FC = () => {
                 </div>
             </div>
             <div className={styles.centralSide}>
-                <h1>Все пиццы</h1>
-
-                <div className={styles.centralSide__elements}>
-                    {filtredArray.filter((item) => {
-                        if (activeCategory === 0 || activeCategory === item.category) {
-                            return true;
-                        }
-                        return false;
-                        }).map((item) => (
-                        <PizzaItem item={item} />
-                    ))}
-                </div>
+                {filtredArray.length == 0
+                ?
+                    <h1>Простите, пицц не найдено</h1>
+                :
+                <>
+                    <h1>Все пиццы</h1>
+                    <div className={styles.centralSide__elements}>
+                        {filtredArray.filter((item) => {
+                            if (activeCategory === 0 || activeCategory === item.category) {
+                                return true;
+                            }
+                            return false;
+                            }).map((item) => (
+                            <PizzaItem item={item} />
+                        ))}
+                    </div>
+                </>
+                }   
             </div>
 
         </div>

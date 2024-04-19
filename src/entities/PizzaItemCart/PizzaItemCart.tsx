@@ -13,15 +13,27 @@ const PizzaItemCart:FC<ICartData> = ({item, count, options}) => {
     const [secondOption, setSecondOption] = useState("")
 
     const checkData = () => {
-        if(options[0] == 1){
-            setFirstOption("тонкое тесто")
-        }else if(options[0] == 2){setFirstOption("Традиционное тесто")}
-
-        if(options[1] == 3){
-            setSecondOption("26 см.")
-        }else if(options[1] == 4){
-            setSecondOption("30 см.")
-        }else{setSecondOption("40 см.")}
+        switch(options[0]) {
+            case 1:
+                setFirstOption("тонкое тесто");
+                break;
+            case 2:
+                setFirstOption("Традиционное тесто");
+                break;
+            default:
+                setFirstOption("Тонкое тесто")
+        }
+        
+        switch(options[1]) {
+            case 3:
+                setSecondOption("26 см.");
+                break;
+            case 4:
+                setSecondOption("30 см.");
+                break;
+            case 5:
+                setSecondOption("40 см.");
+        }    
     }
 
     useEffect(() => {checkData()}, [])
